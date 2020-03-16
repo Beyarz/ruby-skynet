@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ['beyarz']
   s.email       = ''
   s.files       = ['lib/skynet.rb']
+  s.add_dependency 'httparty', '~> 0.18.0'
   s.homepage    = 'https://rubygems.org/gems/sia-skynet'
   s.metadata    = { 'source_code_uri' => 'https://github.com/beyarz/sia-skynet' }
 end
