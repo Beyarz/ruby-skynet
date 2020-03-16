@@ -1,0 +1,18 @@
+AllCops:
+  Exclude:
+    - "Gemfile"
+    - "*.lock"
+    - "*.md"
+    - "*.yml"
+    - ".ruby-version"
+    - "*.gemspec"
+    - "*.gem"
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
