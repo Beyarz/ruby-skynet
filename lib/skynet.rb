@@ -48,7 +48,9 @@ class Skynet
   end
 
   def upload_file(path, options = nil)
-    uri_skynet_prefix + upload_file_request(path, options).to_json
+    upload_request = upload_file_request(path, options).to_json
+    parsed_request = JSON.parse(upload_request)
+    uri_skynet_prefix + parsed_request['skylink']
   end
 
   def upload_file_request_with_chunks(path, options = nil)
@@ -61,13 +63,32 @@ class Skynet
     req
   end
 
-  def upload_directory(path, options = nil); end
+  def walk_directory(path)
+    files = {}
 
-  def upload_directory_request(path, options = nil); end
+    for
+  end
+
+  def upload_directory_request(path, options = nil)
+    if Dir.exist?(path)
+      puts "Given path is not a directory"
+    end
+
+    if options.nil?
+      options = default_upload_options
+    end
+
+    ftuples = []
+    files =
+  end
+
+  def upload_directory(path, options = nil)
+    r = upload_directory_request(path, options)
+    parsed_r = JSON.parse(r.to_json)
+    sia_url = "#{uri_skynet_prefix}#{parsed_r['skylink']}"
+  end
 
   def download_file(path, skylink, options = nil); end
 
   def download_file_request(skylink, options = nil, stream = false); end
-
-  def walk_directory(path); end
 end
