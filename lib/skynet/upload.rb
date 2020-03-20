@@ -27,7 +27,7 @@ module Upload
   def upload_file(path, options = nil)
     upload_request = upload_file_request(path, options).to_json
     parsed_request = JSON.parse(upload_request)
-    uri_skynet_prefix + parsed_request['skylink']
+    URI_SKYNET_PREFIX + parsed_request['skylink']
   end
 
   def upload_file_request_with_chunks(path, options = nil)
@@ -60,6 +60,6 @@ module Upload
   def upload_directory(path, options = nil)
     r = upload_directory_request(path, options)
     parsed_r = JSON.parse(r.to_json)
-    sia_url = "#{uri_skynet_prefix}#{parsed_r['skylink']}"
+    sia_url = "#{URI_SKYNET_PREFIX}#{parsed_r['skylink']}"
   end
 end
