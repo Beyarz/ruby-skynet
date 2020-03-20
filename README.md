@@ -1,6 +1,6 @@
 # Skynet gem
 
-A Ruby gem for integrating Sias Skynet into Ruby apps
+Library for integrating Skynet into Ruby applications
 
 ## Build
 
