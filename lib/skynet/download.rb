@@ -7,7 +7,23 @@ module Download
     }
   end
 
-  def download_file(path, skylink, options = nil); end
+  def download_file(path, skylink, options = nil)
+    r = download_file_request(skylink, options)
 
-  def download_file_request(skylink, options = nil, stream = false); end
+    Kernel.open(path, 'r') do |chunk|
+      # file = File.open("./#{DIR_NAME}/#{name}.extension", 'bw')
+      # file.write chunk.read
+      # file.close
+    end
+  end
+
+  def download_file_request(skylink, options = nil, stream = false)
+    options = default_download_options if options.nil?
+
+    portal = options['portal_url']
+    skylink = strip_prefix(skylink)
+    url = "#{portal}/#{skylink}"
+    req = HTTParty.get(url, follow_redirects: true)
+    req
+  end
 end

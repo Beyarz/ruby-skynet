@@ -20,4 +20,5 @@ class Skynet
       str
     end
   end
+
 end

@@ -45,13 +45,8 @@ module Upload
   end
 
   def upload_directory_request(path, options = nil)
-    if Dir.exist?(path)
-      puts "Given path is not a directory"
-    end
-
-    if options.nil?
-      options = default_upload_options
-    end
+    puts "Given path is not a directory" if Dir.exist?(path)
+    options = default_upload_options if options.nil?
 
     ftuples = []
     files = walk_directory(path)
