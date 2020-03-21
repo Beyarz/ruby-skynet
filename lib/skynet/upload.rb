@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# https://sia.tech/docs/#skynet-skyfile-siapath-post
+
 # Module for handling outbound requests
 module Upload
   def default_upload_options
@@ -15,38 +17,37 @@ module Upload
   def upload_file(local_file_path, options = nil)
     options = default_upload_options if options.nil?
 
-    file = File.open(local_file_path, 'rb')
-    file.close
+    host = options[:portal_url]
+    path = options[:portal_upload_path]
+    file = options[:custom_filename] || local_file_path
+    url  = "#{host}/#{path}?filename=#{file}"
+
+    file_binary = IO.read(local_file_path, mode: 'rb')
+    post_header = {
+      files: {
+        options[:portal_file_fieldname] => file_binary
+      }
+    }
+
+    upload_request = HTTParty.post(url, post_header).to_json
+    parsed_request = JSON.parse(upload_request)
+
+    Skynet::URI_SKYNET_PREFIX + parsed_request['skylink']
+  end
+
+  def upload_file_request_with_chunks(local_file_path, options = nil)
+    options = default_upload_options if options.nil?
 
     host = options[:portal_url]
     path = options[:portal_upload_path]
-    url  = "#{host}/#{path}"
-
-    upload_request = HTTParty.post(url, options[:portal_file_fieldname]).to_json
-    parsed_request = JSON.parse(upload_request)
-
-    URI_SKYNET_PREFIX + parsed_request['skylink']
-  end
-
-  def upload_file_request_with_chunks(path, options = nil)
-    options = default_upload_options if options.nil?
-
-    file = options[:custom_filename] || path
-    url = "#{options[:portal_url]}/#{options[:portal_upload_path]}?filename=#{file}"
+    file = options[:custom_filename] || local_file_path
+    url = "#{host}/#{path}?filename=#{file}"
 
     post_header = {
       headers: {
         'Content-Type' => 'application/octet-stream',
-        'data' => path
-        # data: path
+        'data' => local_file_path
       }
-      # , body: {
-      #   'data' => path,
-      #   data: path
-      # }
-
-      # 'data' => path,
-      # data: path
     }
 
     req = HTTParty.post(url, post_header)
@@ -65,7 +66,7 @@ module Upload
 
     r = HTTParty.post(url, files)
     parsed_r = JSON.parse(r.to_json)
-    sia_url = "#{URI_SKYNET_PREFIX}#{parsed_r['skylink']}"
+    sia_url = "#{Skynet::URI_SKYNET_PREFIX}#{parsed_r['skylink']}"
     sia_url
   end
 end

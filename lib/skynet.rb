@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'net/https'
 require 'httparty'
-
-require_relative 'skynet/download.rb'
-require_relative 'skynet/upload.rb'
+require 'json'
+require_relative './skynet/download.rb'
+require_relative './skynet/upload.rb'
 
 # The entrypoint for the SDK
 class Skynet
@@ -22,15 +20,3 @@ class Skynet
     end
   end
 end
-
-=begin
-require 'skynet'
-
-# Upload
-skylink = Skynet.upload_file("local_file_name.png")
-puts "Uploaded skylink: #(skylink}"
-
-# Download
-Skynet.download_file("destination_path", skylink)
-puts "Download successful!"
-=end

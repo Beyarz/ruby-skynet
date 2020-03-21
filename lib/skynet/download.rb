@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+# https://sia.tech/docs/#skynet-skylink-skylink-get
+
 # Module for handling inbound requests
 module Download
-  HTTP_REDIRECT_PERMANENT = [301, 302]
+  HTTP_REDIRECT_PERMANENT = [301, 302].freeze
 
   def default_download_options
     {
@@ -10,7 +12,7 @@ module Download
     }
   end
 
-  def download_file(destination_path_name, skylink, options = nil, stream_body: true)
+  def download_file(destination_path_name, skylink, options = nil, stream = true)
     options = default_download_options if options.nil?
 
     portal  = options['portal_url']
@@ -18,10 +20,12 @@ module Download
     url     = "#{portal}/#{skylink}"
 
     file = File.open(destination_path_name, 'bw')
-    HTTParty.get(url, follow_redirects: true, :stream_body) do |chunk|
+    HTTParty.get(url, follow_redirects: true, stream_body: stream) do |chunk|
       file.write chunk unless HTTP_REDIRECT_PERMANENT.include? chunk.code
       # file.write chunk.read unless HTTP_REDIRECT_PERMANENT.include?(chunk.code)
     end
+
     file.close
   end
+
 end

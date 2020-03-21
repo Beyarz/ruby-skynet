@@ -1,4 +1,6 @@
 AllCops:
+  TargetRubyVersion: 2.7
+
   Exclude:
     - "Gemfile"
     - "*.lock"
@@ -7,6 +9,7 @@ AllCops:
     - ".ruby-version"
     - "*.gemspec"
     - "*.gem"
+    - "test.*"
 
 Style/HashEachMethods:
   Enabled: true

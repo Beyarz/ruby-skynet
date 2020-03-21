@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'Skynet'
-  s.version     = '0.0.1'
+  s.version     = '0.0.10'
   s.date        = '2020-03-16'
   s.licenses    = nil
   s.summary     = 'Sia skynet gem'
