@@ -3,15 +3,16 @@
 require 'net/http'
 require 'net/https'
 require 'httparty'
+
 require_relative 'skynet/download.rb'
 require_relative 'skynet/upload.rb'
 
-# The main class for the SDK
+# The entrypoint for the SDK
 class Skynet
   URI_SKYNET_PREFIX = 'sia://'
 
-  include Download
-  include Upload
+  extend Download
+  extend Upload
 
   def strip_prefix(str)
     if str.index(URI_SKYNET_PREFIX).zero?
@@ -20,5 +21,16 @@ class Skynet
       str
     end
   end
-
 end
+
+=begin
+require 'skynet'
+
+# Upload
+skylink = Skynet.upload_file("local_file_name.png")
+puts "Uploaded skylink: #(skylink}"
+
+# Download
+Skynet.download_file("destination_path", skylink)
+puts "Download successful!"
+=end

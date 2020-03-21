@@ -1,29 +1,27 @@
 # frozen_string_literal: true
 
+# Module for handling inbound requests
 module Download
+  HTTP_REDIRECT_PERMANENT = [301, 302]
+
   def default_download_options
     {
       portal_url: 'https://siasky.net'
     }
   end
 
-  def download_file(path, skylink, options = nil)
-    r = download_file_request(skylink, options)
-
-    Kernel.open(path, 'r') do |chunk|
-      # file = File.open("./#{DIR_NAME}/#{name}.extension", 'bw')
-      # file.write chunk.read
-      # file.close
-    end
-  end
-
-  def download_file_request(skylink, options = nil, stream = false)
+  def download_file(destination_path_name, skylink, options = nil, stream_body: true)
     options = default_download_options if options.nil?
 
-    portal = options['portal_url']
+    portal  = options['portal_url']
     skylink = strip_prefix(skylink)
-    url = "#{portal}/#{skylink}"
-    req = HTTParty.get(url, follow_redirects: true)
-    req
+    url     = "#{portal}/#{skylink}"
+
+    file = File.open(destination_path_name, 'bw')
+    HTTParty.get(url, follow_redirects: true, :stream_body) do |chunk|
+      file.write chunk unless HTTP_REDIRECT_PERMANENT.include? chunk.code
+      # file.write chunk.read unless HTTP_REDIRECT_PERMANENT.include?(chunk.code)
+    end
+    file.close
   end
 end
