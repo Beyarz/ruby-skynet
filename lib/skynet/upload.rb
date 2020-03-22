@@ -8,8 +8,20 @@ require_relative 'helper.rb'
 module Upload
   extend Helper::Upload
 
-  def upload_file(file_path, options = nil)
-    options = Helper::Upload.default_options if options.nil?
+  def http_post_header(data = {})
+    default_data = {
+      headers: {
+        'Accept' => 'application/octet-stream',
+        'Content-Type' => 'application/octet-stream'
+      }
+    }
+    default_data.merge(data) unless data.empty?
+  end
+
+  def upload_file(file_path, options = {})
+    options = Helper::Upload.default_options
+    options = Helper::Upload.default_options.merge(options) unless options.empty?
+    return "File #{file_path} does not exist!" unless File.exist?(file_path)
 
     host = options[:portal_url]
     path = options[:portal_upload_path]
@@ -17,42 +29,34 @@ module Upload
 
     url = "#{host}#{path}?filename=#{filename}"
     binary_content = IO.read(file_path, mode: 'rb')
-    download_file = options[:download] == false ? 'inline' : 'attachment'
 
-    data = {
-      headers: {
-        'Content-Disposition' => download_file,
-        'Accept' => 'application/octet-stream',
-        'Content-Type' => 'application/octet-stream'
-      },
+    header_data = http_post_header({
       body: binary_content
-    }
+    })
 
-    upload_request = HTTParty.post(url, data)
+    upload_request = HTTParty.post(url, header_data)
     parsed_request = upload_request.to_hash
-    parsed_request['skylink']
+    "Upload successful, skylink: " + parsed_request['skylink']
   end
 
-  def upload_directory(dir_path, options = nil)
-    options = Helper::Upload.default_options if options.nil?
-    puts 'Given path is not a directory' if Dir.exist?(dir_path)
+  def upload_directory(directory_path, options = {})
+    options = Helper::Upload.default_options
+    options = Helper::Upload.default_options.merge(options) unless options.empty?
+    return "Given path is not a directory!" unless Dir.exist?(directory_path)
 
     host = options[:portal_url]
     path = options[:portal_upload_path]
-    filename = options[:custom_filename] || dir_path
-    url = "#{host}#{path}?filename=#{filename}"
+    dir_name = options[:custom_filename] || directory_path
 
-    data = {
-      headers: {
-        'Content-Disposition' => download_file,
-        'Accept' => 'application/octet-stream',
-        'Content-Type' => 'application/octet-stream'
-      },
-      body: binary_content
-    }
+    # url = "#{host}#{path}?filename=#{dir_name}"
+    # binary_content = IO.read(directory_path, mode: 'rb')
 
-    upload_request = HTTParty.post(url, data)
-    parsed_request = upload_request.to_hash
-    parsed_request['skylink']
+    # header_data = http_post_header({
+    #   body: binary_content
+    # })
+
+    # upload_request = HTTParty.post(url, header_data)
+    # parsed_request = upload_request.to_hash
+    # "Upload successful, skylink: " + parsed_request['skylink']
   end
 end

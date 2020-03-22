@@ -9,8 +9,8 @@ module Download
   HTTP_REDIRECT_PERMANENT = [301, 302].freeze
   extend Helper::Download
 
-  def download_file(destination_path_name, skylink, options = nil, stream = true)
-    options = Helper::Download.default_options if options.nil?
+  def download_file(destination_path_name, skylink, options = {}, stream = true)
+    options = Helper::Download.default_options.merge(options) unless options.empty?
 
     portal  = options[:portal_url]
     skylink = Skynet.strip_prefix(skylink)
@@ -23,5 +23,6 @@ module Download
     end
 
     file.close
+    'Download successful'
   end
 end

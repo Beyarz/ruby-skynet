@@ -19,10 +19,9 @@ module Helper
       {
         portal_url: Helper::PORTAL_URL,
         portal_upload_path: 'skynet/skyfile',
+        portal_file_fieldname: 'file',
         portal_directory_fieldname: 'files[]',
         custom_filename: nil,
-        portal_file_fieldname: 'file',
-        download: false
       }
     end
   end
