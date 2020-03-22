@@ -8,7 +8,8 @@ module Helper
   module Download
     def self.default_options
       {
-        portal_url: Helper::PORTAL_URL
+        portal_url: Helper::PORTAL_URL,
+        download: true
       }
     end
   end

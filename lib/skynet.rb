@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'httparty'
-require 'json'
-
 require_relative 'skynet/download.rb'
 require_relative 'skynet/upload.rb'
 
@@ -13,8 +11,8 @@ class Skynet
   extend Download
   extend Upload
 
-  def strip_prefix(str)
-    if str.index(URI_SKYNET_PREFIX).zero?
+  def self.strip_prefix(str)
+    if str.index(URI_SKYNET_PREFIX).nil?
       str.delete_prefix(URI_SKYNET_PREFIX)
     else
       str
