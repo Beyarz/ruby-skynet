@@ -2,22 +2,19 @@
 
 # https://sia.tech/docs/#skynet-skylink-skylink-get
 
+require_relative 'helper.rb'
+
 # Module for handling inbound requests
 module Download
   HTTP_REDIRECT_PERMANENT = [301, 302].freeze
-
-  def default_download_options
-    {
-      portal_url: 'https://siasky.net'
-    }
-  end
+  extend Helper::Download
 
   def download_file(destination_path_name, skylink, options = nil, stream = true)
-    options = default_download_options if options.nil?
+    options = Helper::Download.default_options if options.nil?
 
-    portal  = options['portal_url']
-    skylink = strip_prefix(skylink)
-    url     = "#{portal}/#{skylink}"
+    portal  = options[:portal_url]
+    skylink = Skynet.strip_prefix(skylink)
+    url     = "#{portal}#{skylink}"
 
     file = File.open(destination_path_name, 'bw')
     HTTParty.get(url, follow_redirects: true, stream_body: stream) do |chunk|
@@ -27,5 +24,4 @@ module Download
 
     file.close
   end
-
 end

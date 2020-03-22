@@ -2,71 +2,57 @@
 
 # https://sia.tech/docs/#skynet-skyfile-siapath-post
 
+require_relative 'helper.rb'
+
 # Module for handling outbound requests
 module Upload
-  def default_upload_options
-    {
-      portal_url: 'https://siasky.net',
-      portal_upload_path: 'skynet/skyfile',
-      portal_file_fieldname: 'file',
-      portal_directory_file_fieldname: 'files[]',
-      custom_filename: ''
-    }
-  end
+  extend Helper::Upload
 
-  def upload_file(local_file_path, options = nil)
-    options = default_upload_options if options.nil?
+  def upload_file(file_path, options = nil)
+    options = Helper::Upload.default_options if options.nil?
 
     host = options[:portal_url]
     path = options[:portal_upload_path]
-    file = options[:custom_filename] || local_file_path
-    url  = "#{host}/#{path}?filename=#{file}"
+    filename = options[:custom_filename] || file_path
 
-    file_binary = IO.read(local_file_path, mode: 'rb')
-    post_header = {
-      files: {
-        options[:portal_file_fieldname] => file_binary
-      }
-    }
+    url = "#{host}#{path}?filename=#{filename}"
+    binary_content = IO.read(file_path, mode: 'rb')
+    download_file = options[:download] == false ? 'inline' : 'attachment'
 
-    upload_request = HTTParty.post(url, post_header).to_json
-    parsed_request = JSON.parse(upload_request)
-
-    Skynet::URI_SKYNET_PREFIX + parsed_request['skylink']
-  end
-
-  def upload_file_request_with_chunks(local_file_path, options = nil)
-    options = default_upload_options if options.nil?
-
-    host = options[:portal_url]
-    path = options[:portal_upload_path]
-    file = options[:custom_filename] || local_file_path
-    url = "#{host}/#{path}?filename=#{file}"
-
-    post_header = {
+    data = {
       headers: {
-        'Content-Type' => 'application/octet-stream',
-        'data' => local_file_path
-      }
+        'Content-Disposition' => download_file,
+        'Accept' => 'application/octet-stream',
+        'Content-Type' => 'application/octet-stream'
+      },
+      body: binary_content
     }
 
-    req = HTTParty.post(url, post_header)
-    req
+    upload_request = HTTParty.post(url, data)
+    parsed_request = upload_request.to_hash
+    parsed_request['skylink']
   end
 
-  def upload_directory(path, options = nil)
-    options = default_upload_options if options.nil?
-    puts 'Given path is not a directory' if Dir.exist?(path)
-
-    filename = options[:custom_filename] || path
+  def upload_directory(dir_path, options = nil)
+    options = Helper::Upload.default_options if options.nil?
+    puts 'Given path is not a directory' if Dir.exist?(dir_path)
 
     host = options[:portal_url]
     path = options[:portal_upload_path]
-    url  = "#{host}/#{path}?filename=#{filename}"
+    filename = options[:custom_filename] || dir_path
+    url = "#{host}#{path}?filename=#{filename}"
 
-    r = HTTParty.post(url, files)
-    parsed_r = JSON.parse(r.to_json)
-    sia_url = "#{Skynet::URI_SKYNET_PREFIX}#{parsed_r['skylink']}"
-    sia_url
+    data = {
+      headers: {
+        'Content-Disposition' => download_file,
+        'Accept' => 'application/octet-stream',
+        'Content-Type' => 'application/octet-stream'
+      },
+      body: binary_content
+    }
+
+    upload_request = HTTParty.post(url, data)
+    parsed_request = upload_request.to_hash
+    parsed_request['skylink']
   end
 end

@@ -2,8 +2,9 @@
 
 require 'httparty'
 require 'json'
-require_relative './skynet/download.rb'
-require_relative './skynet/upload.rb'
+
+require_relative 'skynet/download.rb'
+require_relative 'skynet/upload.rb'
 
 # The entrypoint for the SDK
 class Skynet
