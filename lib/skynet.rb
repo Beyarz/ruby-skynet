@@ -15,6 +15,8 @@ class Skynet
 
   # Removes the Skynet::URI_SKYNET_PREFIX constant from string
   def self.strip_prefix(str)
+    return nil if str.nil?
+
     if str.index(URI_SKYNET_PREFIX).nil?
       str
     else

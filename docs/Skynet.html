@@ -159,14 +159,16 @@
 
           
           <div class="method-source-code" id="strip_prefix-source">
-            <pre>   <span class="ruby-comment"># File lib/ruby-skynet.rb</span>
+            <pre>   <span class="ruby-comment"># File lib/skynet.rb</span>
 <span class="line-num">17</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">strip_prefix</span>(<span class="ruby-identifier">str</span>)
-<span class="line-num">18</span>   <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">index</span>(<span class="ruby-constant">URI_SKYNET_PREFIX</span>).<span class="ruby-identifier">nil?</span>
-<span class="line-num">19</span>     <span class="ruby-identifier">str</span>
-<span class="line-num">20</span>   <span class="ruby-keyword">else</span>
-<span class="line-num">21</span>     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">delete_prefix</span>(<span class="ruby-constant">URI_SKYNET_PREFIX</span>)
-<span class="line-num">22</span>   <span class="ruby-keyword">end</span>
-<span class="line-num">23</span> <span class="ruby-keyword">end</span></pre>
+<span class="line-num">18</span>   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">nil?</span>
+<span class="line-num">19</span> 
+<span class="line-num">20</span>   <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">index</span>(<span class="ruby-constant">URI_SKYNET_PREFIX</span>).<span class="ruby-identifier">nil?</span>
+<span class="line-num">21</span>     <span class="ruby-identifier">str</span>
+<span class="line-num">22</span>   <span class="ruby-keyword">else</span>
+<span class="line-num">23</span>     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">delete_prefix</span>(<span class="ruby-constant">URI_SKYNET_PREFIX</span>)
+<span class="line-num">24</span>   <span class="ruby-keyword">end</span>
+<span class="line-num">25</span> <span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>

@@ -1,4 +1,4 @@
-require_relative '../lib/ruby-skynet.rb'
+require_relative '../lib/skynet.rb'
 
 describe Skynet, "#strip_prefix" do
   context "with a string containing URI_SKYNET_PREFIX" do
@@ -19,6 +19,13 @@ describe Skynet, "#strip_prefix" do
     it "should return empty string" do
       strip = Skynet.strip_prefix('')
       expect(strip).to eq('')
+    end
+  end
+
+  context "with nil as argument" do
+    it "should return nil" do
+      strip = Skynet.strip_prefix(nil)
+      expect(strip).to eq(nil)
     end
   end
 end
