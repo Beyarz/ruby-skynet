@@ -9,7 +9,7 @@ The documentation can be viewed from [here](https://beyarz.github.io/ruby-skynet
 ## Example
 
 ```ruby
-require 'ruby-skynet'
+require 'skynet'
 
 # Upload
 upload = Skynet.upload_file('src.jpg')

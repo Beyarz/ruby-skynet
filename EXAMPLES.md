@@ -3,7 +3,7 @@
 ## Upload
 
 ```ruby
-require 'ruby-skynet'
+require 'skynet'
 
 # Upload to another portal & change filename
 skylink = Skynet.upload_file('development.png', {
@@ -17,7 +17,7 @@ skylink = Skynet.upload_file('development.png', {
 ## Download
 
 ```ruby
-require 'ruby-skynet'
+require 'skynet'
 
 # Download from specific portal
 Skynet.download_file("/var/www/html/src.jpg", skylink, {
