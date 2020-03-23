@@ -2,6 +2,10 @@
 
 Library for integrating Skynet into Ruby applications
 
+## Docs
+
+The documentation can be viewed from [here](https://beyarz.github.io/ruby-skynet/)
+
 ## Example
 
 ```ruby
