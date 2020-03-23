@@ -32,7 +32,7 @@ module Upload
 
     header_data = http_post_header({
       headers: {
-        'Content-Disposition' => 'attachment; ' + filename
+        'Content-Disposition' => 'attachment; filename="#{filename}"'
       },
       body: binary_content,
       options[:portal_file_fieldname] => filename
