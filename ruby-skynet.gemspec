@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ruby-skynet'
-  s.version     = '1.3.1'
+  s.version     = '1.3.2'
   s.date        = '2020-03-16'
   s.licenses    = 'MIT'
   s.summary     = 'Sia skynet gem'
@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ['beyarz']
   s.email       = ''
   s.files       = ['lib/skynet.rb', 'lib/skynet/download.rb', 'lib/skynet/helper.rb', 'lib/skynet/upload.rb']
+  s.required_ruby_version = '>= 2.7.0'
   s.add_dependency 'httparty', '~> 0.18.0'
   s.add_development_dependency "rubocop", "~> 0.80.1"
   s.add_development_dependency "rake", "~> 13.0"
