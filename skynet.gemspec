@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'skynet'
-  s.version     = '0.1.15'
+  s.version     = '1.1.15'
   s.date        = '2020-03-16'
-  s.licenses    = nil
+  s.licenses    = 'MIT'
   s.summary     = 'Sia skynet gem'
   s.description = 'Ruby gem for integrating Sias Skynet into Ruby apps'
   s.authors     = ['beyarz']

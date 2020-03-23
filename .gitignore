@@ -1,4 +1,5 @@
 mine.*
+block.*
 .rdoc_options
 
 # Created by https://www.gitignore.io/api/ruby,macos,visualstudiocode
