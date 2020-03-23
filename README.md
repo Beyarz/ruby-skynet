@@ -30,7 +30,7 @@ For more see [examples.md](EXAMPLES.md)
 
 ## Generate document
 
-`rake rdoc``
+`rake rdoc`
 
 ### Regenerate document
 
