@@ -6,6 +6,8 @@ require_relative 'helper.rb'
 module Upload
   extend Helper::Upload
 
+  # Default headers provided for uploading files,
+  # any argument provided is merged with the default values
   def http_post_header(data = {})
     default_data = {
       headers: {
@@ -18,6 +20,7 @@ module Upload
     default_data.merge(data) unless data.empty?
   end
 
+  # Uploads file to the skynet, file_path is required but options are optional since default values are provided
   def upload_file(file_path, options = {})
     options = Helper::Upload.default_options
     options = Helper::Upload.default_options.merge(options) unless options.empty?
@@ -43,6 +46,8 @@ module Upload
     "Upload successful, skylink: " + parsed_request['skylink']
   end
 
+  # Still work in progress
+  # Uploads a whole directory to the skynet
   # def upload_directory(directory_path, options = {})
   #   options = Helper::Upload.default_options
   #   options = Helper::Upload.default_options.merge(options) unless options.empty?

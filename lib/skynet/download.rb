@@ -4,9 +4,14 @@ require_relative 'helper.rb'
 
 # Module for handling inbound requests
 module Download
+
+  # Array with http redirect & http permanent code
+  # Used to determine if the GET request should start downloading or follow redirect
   HTTP_REDIRECT_PERMANENT = [301, 302].freeze
   extend Helper::Download
 
+  # Download file from the skynet portal
+  # file_name & skylink is required, the rest is optional since they come with default values
   def download_file(file_name, skylink, options = {}, stream = true)
     options = Helper::Download.default_options
     options = Helper::Download.default_options.merge(options) unless options.empty?

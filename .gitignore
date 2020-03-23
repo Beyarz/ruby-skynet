@@ -1,4 +1,5 @@
-test.*
+mine.*
+.rdoc_options
 
 # Created by https://www.gitignore.io/api/ruby,macos,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=ruby,macos,visualstudiocode
@@ -68,8 +69,6 @@ build-iPhoneSimulator/
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/
-/doc/
-/rdoc/
 
 ## Environment normalization:
 /.bundle/

@@ -4,3 +4,11 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}"}
 
 gem "rubocop", "~> 0.80.1", require: false
+
+gem "rake", "~> 13.0"
+
+gem "rdoc", "~> 6.2"
+
+gem "rspec", "~> 3.9"
+
+gem "rubygems-tasks", "~> 0.2.5"
