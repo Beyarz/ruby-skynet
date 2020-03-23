@@ -2,6 +2,20 @@
 
 Library for integrating Skynet into Ruby applications
 
+## Installation
+
+#### Gem
+
+`gem install ruby-skynet`
+
+#### Bundle
+
+`bundle add ruby-skynet`
+
+#### Add to Gemfile manually
+
+`gem 'ruby-skynet', '~> 1.3'`
+
 ## Docs
 
 The documentation can be viewed from [here](https://beyarz.github.io/ruby-skynet/)
