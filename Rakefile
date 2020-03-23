@@ -1,9 +1,8 @@
 require 'rdoc/task'
 
-desc "Create docs"
-RDoc::Task.new do |opt|
+RDoc::Task.new :document do |opt|
   opt.rdoc_dir = 'docs/'
-  opt.title    = "Skynet rubygem"
+  opt.title    = "Skynet rubygem2"
   opt.main = "README_md.html"
 
   opt.options << '--line-numbers' << '--inline-source'
@@ -15,6 +14,3 @@ RDoc::Task.new do |opt|
   opt.rdoc_files.exclude('block.md')
   opt.rdoc_files.exclude('mine.rb')
 end
-
-# rdoc = RDoc::RDoc.new
-# rdoc.document options

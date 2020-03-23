@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'skynet'
+  s.name        = 'ruby-skynet'
   s.version     = '1.1.15'
   s.date        = '2020-03-16'
   s.licenses    = 'MIT'
