@@ -12,3 +12,5 @@ gem "rdoc", "~> 6.2"
 gem "rspec", "~> 3.9"
 
 gem "rubygems-tasks", "~> 0.2.5"
+
+gem "httparty", "~> 0.18.0"
