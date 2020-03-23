@@ -12,7 +12,7 @@ Library for integrating Skynet into Ruby applications
 
 `bundle add ruby-skynet`
 
-#### Add to Gemfile manually
+#### Gemfile
 
 `gem 'ruby-skynet', '~> 1.3'`
 
