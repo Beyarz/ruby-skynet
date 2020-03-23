@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 
-<title>README - RDoc Documentation</title>
+<title>README - ruby-skynet gem</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -61,7 +61,11 @@
 
   <ul class="link-list" role="directory">
     <li><a href="#label-Skynet+gem">Skynet gem</a>
+    <li><a href="#label-Docs">Docs</a>
     <li><a href="#label-Example">Example</a>
+    <li><a href="#label-Run+unit+test">Run unit test</a>
+    <li><a href="#label-Generate+document">Generate document</a>
+    <li><a href="#label-Regenerate+document">Regenerate document</a>
   </ul>
 </div>
 
@@ -74,15 +78,7 @@
   
     <li><a href="./EXAMPLES_md.html">EXAMPLES</a>
   
-    <li><a href="./Gemfile.html">Gemfile</a>
-  
-    <li><a href="./Gemfile_lock.html">Gemfile.lock</a>
-  
-    <li><a href="./LICENSE.html">LICENSE</a>
-  
     <li><a href="./README_md.html">README</a>
-  
-    <li><a href="./block_md.html">block</a>
   
   </ul>
 </div>
@@ -96,9 +92,13 @@
 
 <p>Library for integrating <a href="Skynet.html"><code>Skynet</code></a> into Ruby applications</p>
 
+<h2 id="label-Docs">Docs<span><a href="#label-Docs">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The documentation can be viewed from <a href="https://beyarz.github.io/ruby-skynet/">here</a></p>
+
 <h2 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;skynet&#39;</span>
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;ruby-skynet&#39;</span>
 
 <span class="ruby-comment"># Upload</span>
 <span class="ruby-identifier">upload</span> = <span class="ruby-constant">Skynet</span>.<span class="ruby-identifier">upload_file</span>(<span class="ruby-string">&#39;src.jpg&#39;</span>)
@@ -112,6 +112,18 @@
 </pre>
 
 <p>For more see <a href="EXAMPLES.md">examples.md</a></p>
+
+<h2 id="label-Run+unit+test">Run unit test<span><a href="#label-Run+unit+test">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><code>rake spec</code></p>
+
+<h2 id="label-Generate+document">Generate document<span><a href="#label-Generate+document">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>`rake rdoc“</p>
+
+<h3 id="label-Regenerate+document">Regenerate document<span><a href="#label-Regenerate+document">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><code>rake rerdoc</code></p>
 
 </main>
 
