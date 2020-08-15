@@ -1,5 +1,7 @@
 # Skynet gem
 
+[![Gem Version](https://badge.fury.io/rb/ruby-skynet.svg)](https://badge.fury.io/rb/ruby-skynet)
+
 Library for integrating Skynet into Ruby applications
 
 ## Installation
