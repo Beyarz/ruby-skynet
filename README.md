@@ -54,4 +54,4 @@ For more see [examples.md](EXAMPLES.md)
 
 ## Branches
 
-Every branch should update the ![ruby-skynet.gemspec](https://github.com/Beyarz/ruby-skynet/blob/master/ruby-skynet.gemspec) with the new version & date
+Every branch should update the [ruby-skynet.gemspec](ruby-skynet.gemspec) with the new version & date
