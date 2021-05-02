@@ -51,3 +51,7 @@ For more see [examples.md](EXAMPLES.md)
 ### Regenerate document
 
 `rake rerdoc`
+
+## Branches
+
+Every branch should update the (ruby-skynet.gemspec)[/ruby-skynet.gemspec] with the new version & date
