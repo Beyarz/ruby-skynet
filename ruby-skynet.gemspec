@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'ruby-skynet'
-  s.version     = '1.3.3'
-  s.date        = '2021-05-02'
+  s.version     = '1.3.4'
+  s.date        = '2021-07-04'
   s.licenses    = 'MIT'
   s.summary     = 'Sia skynet gem'
   s.description = 'Ruby gem for integrating Sia Skynet into Ruby apps'
@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rdoc", "~> 6.2"
   s.add_development_dependency "rspec", "~> 3.9"
   s.add_development_dependency "rubygems-tasks", "~> 0.2.5"
+  s.add_development_dependency 'bundler', '~> 2.2', '>= 2.2.21'
   s.homepage    = 'https://rubygems.org/gems/ruby-skynet'
   s.metadata    = { 'source_code_uri' => 'https://github.com/beyarz/ruby-skynet' }
 end
