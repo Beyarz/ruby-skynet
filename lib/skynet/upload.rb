@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'helper.rb'
+require_relative 'helper'
 
 # Module for handling outbound requests
 module Upload
@@ -21,57 +21,29 @@ module Upload
   end
 
   # Uploads file to the skynet, file_path is required but options are optional since default values are provided
-  def upload_file(file_path, options = {})
+  def upload_file(file_path, override_options = {})
     options = Helper::Upload.default_options
-    options = Helper::Upload.default_options.merge(options) unless options.empty?
+    options = Helper::Upload.default_options.merge(override_options) unless override_options.empty?
     return "File #{file_path} does not exist!" unless File.exist?(file_path)
 
     host = options[:portal_url]
     path = options[:portal_upload_path]
     filename = options[:custom_filename] || file_path
+    filename = Helper::Upload.strip_dotslash_path(filename)
 
     url = "#{host}#{path}?filename=#{filename}"
-    binary_content = IO.read(file_path, mode: 'rb')
+    binary_content = IO.readlines(file_path, mode: 'rb').join
 
     header_data = http_post_header({
-      headers: {
-        'Content-Disposition' => 'attachment; filename="#{filename}"'
-      },
-      body: binary_content,
-      options[:portal_file_fieldname] => filename
-    })
+                                     headers: {
+                                       'Content-Disposition' => "attachment; filename='#{filename}'"
+                                     },
+                                     body: binary_content,
+                                     options[:portal_file_fieldname] => filename
+                                   })
 
     upload_request = HTTParty.post(url, header_data)
     parsed_request = upload_request.to_hash
-    "Upload successful, skylink: " + parsed_request['skylink']
+    "Upload successful, skylink: #{parsed_request['skylink']}"
   end
-
-  # Still work in progress
-  # Uploads a whole directory to the skynet
-  # def upload_directory(directory_path, options = {})
-  #   options = Helper::Upload.default_options
-  #   options = Helper::Upload.default_options.merge(options) unless options.empty?
-  #   return "Given path is not a directory!" unless Dir.exist?(directory_path)
-
-  #   directory_entries = Dir.glob("#{directory_path}/*")
-
-  #   binary_content = IO.read(filename, mode: 'rb')
-
-  #  header_data = http_post_header({
-  #    headers: {
-  #      'Content-Disposition' => 'attachment; ' + filename
-  #    },
-  #    body: binary_content,
-  #    options[:portal_directory_fieldname] => filename
-  #  })
-
-  #   host = options[:portal_url]
-  #   path = options[:portal_upload_path]
-  #   dir_name = options[:custom_filename] || directory_path
-  #   url = "#{host}#{path}?filename=#{dir_name}"
-
-  #   upload_request = HTTParty.post(url, header_data)
-  #   parsed_request = upload_request.to_hash
-  #   "Upload successful, skylink: " + parsed_request['skylink']
-  # end
 end
