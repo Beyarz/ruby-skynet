@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0
 
   Exclude:
     - "Gemfile"
@@ -20,8 +20,11 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+Metrics/AbcSize:
+  Max: 25
+
 Metrics/MethodLength:
   Max: 25
 
 Layout/LineLength:
-  Max: 100
+  Max: 125
