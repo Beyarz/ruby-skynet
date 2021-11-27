@@ -6,7 +6,7 @@
 require 'skynet'
 
 # Upload to another portal & change filename
-skylink = Skynet.upload_file('development.png', {
+skylink = Skynet.upload_file('./development.png', {
   portal_url: 'https://somewhere.else.tech/',
   custom_filename: 'production.png'
 })
