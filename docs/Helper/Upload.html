@@ -21,8 +21,6 @@
 <link href="../css/rdoc.css" rel="stylesheet">
 
 
-
-
 <body id="top" role="document" class="module">
 <nav role="navigation">
   <div id="project-navigation">
@@ -62,14 +60,14 @@
     
     
     
-    <!-- Method Quickref -->
+    
+<!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    
     <li ><a href="#method-c-default_options">::default_options</a>
-    
+    <li ><a href="#method-c-strip_dotslash_path">::strip_dotslash_path</a>
   </ul>
 </div>
 
@@ -87,72 +85,80 @@
 
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
 
-    
 
-    
+
      <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Class Methods</h3>
        </header>
 
-    
       <div id="method-c-default_options" class="method-detail ">
-        
         <div class="method-heading">
           <span class="method-name">default_options</span><span
             class="method-args">()</span>
-          
           <span class="method-click-advice">click to toggle source</span>
-          
         </div>
-        
 
         <div class="method-description">
-          
           <p>Default options for the upload module</p>
-          
-          
 
-          
           <div class="method-source-code" id="default_options-source">
             <pre>   <span class="ruby-comment"># File lib/skynet/helper.rb</span>
-<span class="line-num">25</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">default_options</span>
-<span class="line-num">26</span>   {
-<span class="line-num">27</span>     <span class="ruby-value">portal_url:</span> <span class="ruby-constant">Helper</span><span class="ruby-operator">::</span><span class="ruby-constant">PORTAL_URL</span>,
-<span class="line-num">28</span>     <span class="ruby-value">portal_upload_path:</span> <span class="ruby-string">&#39;skynet/skyfile&#39;</span>,
-<span class="line-num">29</span>     <span class="ruby-value">portal_file_fieldname:</span> <span class="ruby-string">&#39;file&#39;</span>,
-<span class="line-num">30</span>     <span class="ruby-value">portal_directory_fieldname:</span> <span class="ruby-string">&#39;files[]&#39;</span>,
-<span class="line-num">31</span>     <span class="ruby-value">custom_filename:</span> <span class="ruby-keyword">nil</span>,
-<span class="line-num">32</span>   }
-<span class="line-num">33</span> <span class="ruby-keyword">end</span></pre>
+<span class="line-num">36</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">default_options</span>
+<span class="line-num">37</span>   {
+<span class="line-num">38</span>     <span class="ruby-value">portal_url:</span> <span class="ruby-constant">Helper</span><span class="ruby-operator">::</span><span class="ruby-constant">PORTAL_URL</span>,
+<span class="line-num">39</span>     <span class="ruby-value">portal_upload_path:</span> <span class="ruby-string">&#39;skynet/skyfile&#39;</span>,
+<span class="line-num">40</span>     <span class="ruby-value">portal_file_fieldname:</span> <span class="ruby-string">&#39;file&#39;</span>,
+<span class="line-num">41</span>     <span class="ruby-value">portal_directory_fieldname:</span> <span class="ruby-string">&#39;files[]&#39;</span>,
+<span class="line-num">42</span>     <span class="ruby-value">custom_filename:</span> <span class="ruby-keyword">nil</span>
+<span class="line-num">43</span>   }
+<span class="line-num">44</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
-    </section>
-  
-  </section>
+      <div id="method-c-strip_dotslash_path" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">strip_dotslash_path</span><span
+            class="method-args">(file_path)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
 
+        <div class="method-description">
+          <p>Removes “./” from a given filename if provided</p>
+
+          <div class="method-source-code" id="strip_dotslash_path-source">
+            <pre>   <span class="ruby-comment"># File lib/skynet/helper.rb</span>
+<span class="line-num">47</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">strip_dotslash_path</span>(<span class="ruby-identifier">file_path</span>)
+<span class="line-num">48</span>   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">file_path</span>.<span class="ruby-identifier">nil?</span>
+<span class="line-num">49</span> 
+<span class="line-num">50</span>   <span class="ruby-keyword">if</span> <span class="ruby-identifier">file_path</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&#39;./&#39;</span>)
+<span class="line-num">51</span>     <span class="ruby-keyword">return</span> <span class="ruby-identifier">file_path</span>.<span class="ruby-identifier">delete_prefix</span>(<span class="ruby-string">&#39;./&#39;</span>)
+<span class="line-num">52</span>   <span class="ruby-keyword">else</span>
+<span class="line-num">53</span>     <span class="ruby-keyword">return</span> <span class="ruby-identifier">file_path</span>
+<span class="line-num">54</span>   <span class="ruby-keyword">end</span>
+<span class="line-num">55</span> <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.3.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
