@@ -4,7 +4,7 @@
 
 Library for integrating Skynet into Ruby applications
 
-## Installation
+## Getting started
 
 #### Gem
 
@@ -18,11 +18,7 @@ Library for integrating Skynet into Ruby applications
 
 `gem 'ruby-skynet', '~> 1.3'`
 
-## Docs
-
-The documentation can be viewed from [here](https://beyarz.github.io/ruby-skynet/)
-
-## Example
+## Examples
 
 ```ruby
 require 'skynet'
@@ -39,19 +35,3 @@ puts download
 ```
 
 For more see [examples.md](EXAMPLES.md)
-
-## Run unit test
-
-`rake spec`
-
-## Generate document
-
-`rake rdoc`
-
-### Regenerate document
-
-`rake rerdoc`
-
-## Branches
-
-Every branch should update the [ruby-skynet.gemspec](ruby-skynet.gemspec) with the new version & date
