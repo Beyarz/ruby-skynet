@@ -2,6 +2,7 @@
 
 require 'rdoc/task'
 require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
 
 desc 'Generate document'
 RDoc::Task.new do |opt|
@@ -13,14 +14,12 @@ RDoc::Task.new do |opt|
   opt.rdoc_files.include('lib/*.rb', 'lib/skynet/*.rb', 'EXAMPLES.md', 'README.md')
 end
 
-desc 'Run rubocop'
-task :lint do
-  `rubocop`
-end
+desc 'Lint with rubocop'
+RuboCop::RakeTask.new
 
-desc 'Run rubocop with autofixable'
-task :autolint do
-  `rubocop -a`
+desc 'with rubocop'
+RuboCop::RakeTask.new do |s|
+  s.options = ['-a']
 end
 
 desc 'Build gem'
@@ -28,11 +27,11 @@ task :build do
   `gem build ruby-skynet.gemspec`
 end
 
-desc 'Install gem'
-task :install do
-  file = Dir.glob('ruby-skynet-*.gem').first
-  `gem install ruby-skynet-#{file}.gem`
-end
+# desc 'Install gem'
+# task :install do
+#   file = Dir.glob('ruby-skynet-*.gem').first
+#   `gem install ruby-skynet-#{file}.gem`
+# end
 
 desc 'Run tests'
 RSpec::Core::RakeTask.new do |test|
