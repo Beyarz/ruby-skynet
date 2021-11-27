@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/skynet/helper.rb'
+require_relative '../lib/skynet/helper'
 
 describe Helper::Download, '#strip_prefix' do
   context 'with a string containing URI_SKYNET_PREFIX' do

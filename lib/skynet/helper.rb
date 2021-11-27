@@ -48,9 +48,9 @@ module Helper
       return nil if file_path.nil?
 
       if file_path.start_with?('./')
-        return file_path.delete_prefix('./')
+        file_path.delete_prefix('./')
       else
-        return file_path
+        file_path
       end
     end
   end

@@ -32,7 +32,7 @@ module Upload
     filename = Helper::Upload.strip_dotslash_path(filename)
 
     url = "#{host}#{path}?filename=#{filename}"
-    binary_content = IO.readlines(file_path, mode: 'rb').join
+    binary_content = File.readlines(file_path, mode: 'rb').join
 
     header_data = http_post_header({
                                      headers: {
