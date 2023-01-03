@@ -15,6 +15,6 @@ gem 'rspec', '~> 3.9'
 
 gem 'rubygems-tasks', '~> 0.2.5'
 
-gem 'httparty', '~> 0.18.0'
+gem 'httparty', '~> 0.21.0'
 
 gem 'bundler', '~> 2.2', '>= 2.2.21'
