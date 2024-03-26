@@ -9,7 +9,7 @@ gem 'rubocop', '~> 0.80.1', require: false
 
 gem 'rake', '~> 13.0'
 
-gem 'rdoc', '~> 6.2'
+gem 'rdoc', '~> 6.3'
 
 gem 'rspec', '~> 3.9'
 
